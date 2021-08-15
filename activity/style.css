@@ -1,0 +1,154 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+}
+.video_container{
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+.video{
+    width: 100%;
+    height: 100%;
+    /* transform: scale(2); */
+}
+.record_btn,.capture_btn{
+    height: 4.5rem;
+    width: 4.5rem;
+    top:1rem;
+    border-radius: 50%;
+    z-index: 2;
+    border: none;
+    outline: none;
+
+}
+.record_btn{
+    background-color: red;
+}
+
+.capture_btn{
+    top: 55vh;
+}
+
+.btn_parent{
+    height: 7rem;
+    width: 7rem;
+    border: 0.5rem solid white;
+    position: fixed;
+    top: 30vh;
+    z-index: 6;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 3vw;
+}
+
+.capture_container{
+    top: 50vh;
+}
+
+/* ***************animation*********** */
+.record_animation{
+    animation: scaleUp 1s ease-in infinite;
+}
+
+.capture_animation{
+    animation: scaleUp 0.5s ease-in;
+}
+@keyframes scaleUp{
+    0%{
+        transform: scale(1);
+    }
+    25%{
+        transform: scale(1.125);
+    }
+    50%{
+        transform: scale(1.16);
+    }
+    75%{
+        transform: scale(1.16);
+    }
+}
+
+.filter_container{
+    height: 50vh;
+    width: 4rem;
+    position: fixed;
+    top: 10vh;
+    left: 5vw;
+    z-index: 6;
+}
+
+.filter{
+    background-image: url("https://picsum.photos/id/237/200/300"); 
+    height: 20%;
+    background-size: cover;
+    background-blend-mode: color-burn;
+}
+
+.timing{
+    color: white;
+    position: fixed;
+    bottom: 15vh;
+    left: 3vw;
+    font-size: 1.7rem;
+    font-family: sans-serif;
+    font-weight: 600;
+    display: none;
+}
+.timing_active{
+    display: block;
+}
+
+.ui_filter{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 4;
+    display: none;
+}
+.ui_filter_active{
+    display: block;
+}
+
+/* **********************zoom container ************************** */
+.zoom{
+    width: 3rem;
+    height: 7rem;
+    position: fixed;
+    z-index: 6;
+    background-color: #444;
+    top: 7vh;
+    right: 3vw;
+}
+.icon_container{
+    color: white;
+    height: 50%;
+    border-bottom: 2px solid black;
+    text-align: center;
+    padding-top: 1rem;
+}
+.icon{
+    font-size: 180%;
+}
+.gallery{
+    position: fixed;
+    z-index: 6;
+    bottom: 2vh;
+    width: 5rem;
+    height: 5rem;
+    right: 2rem;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    background-color: lightcyan;
+    color: rgb(90, 27, 143);
+    font-size: 120%;
+    padding-top: 8px;
+    text-decoration: none;
+    font-weight: bold;
+
+}

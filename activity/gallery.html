@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Gallery</h1>
+    <script>
+        let request = indexedDB.open("camera", 1);
+        let db;
+        request.onsuccess = function (e) {
+            db = request.result;
+            viewMedia();
+            viewVideo();
+        }
+        request.onerror = function (err) {
+            console.log(err);
+        }
+        request.onupgradeneeded = function () {
+            db = request.result;
+            db.createObjectStore("img", { keyPath: "mid" });
+            db.createObjectStore("video", { keyPath: "mid" });
+        }
+        function viewMedia() {
+            if (db) {
+                let tx = db.transaction("img", "readonly");
+                let noteStore = tx.objectStore("img");
+                let pendingAns = noteStore.openCursor();
+                pendingAns.addEventListener("success", function (e) {
+                    let cursor = pendingAns.result;
+                    if (cursor) {
+                        // console.log(cursor.value);
+                        let link = cursor.value.media;
+                        let img = document.createElement("img");
+                        img.src = link;
+                        img.style.height = 200 + "px";
+                        document.body.appendChild(img);
+                        cursor.continue();
+                    }
+                })
+            } else {
+                alert("db is still loading");
+            }
+        }
+
+        function viewVideo() {
+            if (db) {
+                let tx = db.transaction("video", "readonly");
+                let noteStore = tx.objectStore("video");
+                let pendingAns = noteStore.openCursor();
+                pendingAns.addEventListener("success", function (e) {
+                    let cursor = pendingAns.result;
+                    if (cursor) {
+                        // console.log(cursor.value);
+                        let link = cursor.value.media;
+                        let video = document.createElement("video");
+                        video = link;
+                        // video.style.height = 200 + "px";
+                        document.body.appendChild(video);
+                        cursor.continue();
+                    }
+                })
+            }else{
+                alert("db is still loading");
+            }
+        }
+    </script>
+</body>
+
+</html>
